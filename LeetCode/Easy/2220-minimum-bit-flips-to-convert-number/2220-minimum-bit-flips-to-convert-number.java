@@ -4,7 +4,7 @@ class Solution {
         int count = 0;
 
         for (int i = 0; i < 31; i++) {
-            if ((change & (1 << i)) != 0) {  // FIX
+            if ((change & (1 << i)) != 0) {  
                 count++;
             }
         }
