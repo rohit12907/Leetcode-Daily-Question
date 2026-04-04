@@ -1,27 +1,31 @@
 class Solution {
     public String decodeCiphertext(String encodedText, int rows) {
-        if (rows == 1)
-            return encodedText;
+        int l = encodedText.length();
+        int columns =  l/rows;
+        int k = 0 ;
+        String o="";
+        char nums[][]= new char[rows][columns];
+        for(int i = 0;nums.length>i;i++){
+            for(int j = 0 ;j<nums[0].length;j++){
+                nums[i][j]=encodedText.charAt(k);
+                k++;
 
-        int n = encodedText.length();
-        int cols = n / rows;
-
-        StringBuilder res = new StringBuilder(n);
-
-        for (int c = 0; c < cols; c++) {
-            int r = 0, j = c;
-            while (r < rows && j < cols) {
-                res.append(encodedText.charAt(r * cols + j));
-                r++;
-                j++;
             }
         }
+        for(int col= 0 ;columns>col;col++){
+           int i = 0;
+           int j = col;
+            while(i<rows && j<columns){
+                o+=nums[i][j];
+                i++;
+            j++;
 
-        int end = res.length() - 1;
-        while (end >= 0 && res.charAt(end) == ' ') {
-            end--;
+
+            }
+            // o = o.trim();
+
         }
-
-        return res.substring(0, end + 1);
+        return o.stripTrailing();
+        
     }
 }
