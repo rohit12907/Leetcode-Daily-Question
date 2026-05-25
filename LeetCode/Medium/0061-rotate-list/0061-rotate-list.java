@@ -1,48 +1,51 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
+
     public ListNode rotateRight(ListNode head, int k) {
-        
-        if (head == null || head.next == null || k == 0)
+
+        if(head == null || head.next == null || k == 0)
             return head;
 
-        // Step 1: find length
-        ListNode temp = head;
-        int length = 1;
-        
-        while (temp.next != null) {
-            temp = temp.next;
-            length++;
+        ListNode temp1 = head;
+
+        int size = 0;
+
+        // Find size
+        while(temp1 != null){
+
+            size++;
+
+            temp1 = temp1.next;
         }
 
-        // Step 2: make circular
-        temp.next = head;
+        // Reduce k
+        k = k % size;
 
-        // Step 3: normalize k
-        k = k % length;
+        if(k == 0)
+            return head;
 
-        // Step 4: find new tail
-        int steps = length - k;
-        ListNode newTail = head;
+        // Find new tail
+        ListNode temp2 = head;
 
-        for (int i = 1; i < steps; i++) {
-            newTail = newTail.next;
+        for(int i = 0; i < size - k - 1; i++){
+            temp2 = temp2.next;
         }
 
-        // Step 5: new head
-        ListNode newHead = newTail.next;
+        // New head
+        ListNode newhead = temp2.next;
 
-        // break circle
-        newTail.next = null;
+        // Break link
+        temp2.next = null;
 
-        return newHead;
+        // Reach last node
+        ListNode temp4 = newhead;
+
+        while(temp4.next != null){
+            temp4 = temp4.next;
+        }
+
+        // Connect
+        temp4.next = head;
+
+        return newhead;
     }
 }
