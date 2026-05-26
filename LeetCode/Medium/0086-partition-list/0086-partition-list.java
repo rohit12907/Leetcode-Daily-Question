@@ -30,8 +30,10 @@ class Solution {
            t = t.next ;
 
         }
-        t1.next = d2.next ;
         t2.next = null;
+ 
+        t1.next = d2.next ;
+        // t2.next = null;
  
         return d1.next ;
 
