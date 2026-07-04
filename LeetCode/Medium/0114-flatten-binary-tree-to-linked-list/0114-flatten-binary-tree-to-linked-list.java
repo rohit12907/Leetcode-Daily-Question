@@ -17,12 +17,11 @@ class Solution {
     ArrayList<TreeNode> a1 = new ArrayList<>();
     
     public void flatten(TreeNode root) {
-        // Fix 1: Handle the edge case for an empty tree immediately
+     
         if (root == null) return;
         
         preorder(root);
-        
-        // Loop through the list to rewire the left and right pointers
+     
         for (int i = 0; i < a1.size() - 1; i++) {
             TreeNode a = a1.get(i);
             TreeNode b = a1.get(i + 1);
@@ -30,7 +29,6 @@ class Solution {
             a.left = null;
         }
         
-        // Explicitly set the last node's children to null
         TreeNode last = a1.get(a1.size() - 1);
         last.left = null;
         last.right = null;
