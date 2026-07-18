@@ -1,10 +1,19 @@
 class Solution {
     public int findGCD(int[] nums) {
-        Arrays.sort(nums);
-        int small = nums[0];
-        int biggest = nums[nums.length-1];
+  
+      int min = nums[0];
+  int max = nums[0];
 
-        return Gcd(small,biggest);
+  for (int i = 1; i < nums.length; i++) {
+
+    if (nums[i] < min) {
+      min = nums[i];
+    }
+    if (nums[i] > max) {
+      max = nums[i]; 
+    }
+  }
+        return Gcd(min,max);
 
         
     }
@@ -16,4 +25,5 @@ class Solution {
         }
         return Math.abs(a); 
     }
+
 }
